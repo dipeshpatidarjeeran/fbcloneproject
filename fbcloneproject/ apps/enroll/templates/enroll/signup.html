@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>registration</title>
+	<style type="text/css">
+		.success{
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="POST" novalidate>
+		{% csrf_token %}
+		{% for fm in form %}
+			{{fm.label_tag}} {{fm}} {{fm.errors | striptags}} <br><br>
+		{% endfor %}
+		
+		<input type="submit" name="submit">
+
+	</form>
+	{% if messages %}
+		{% for message in messages %}
+		<small{% if messages.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+		{% endfor %}
+	{% endif %}
+</body>
+</html>
